@@ -1,6 +1,7 @@
 import os
 FIOI_LOGIN = os.environ["FIOI_LOGIN"]
 FIOI_PASS = os.environ["FIOI_PASS"]
+print(FIOI_PASS[-1])
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -20,6 +21,7 @@ driver.get("https://concours.algorea.org")
 
 wait = WebDriverWait(driver, 30)
 driver.implicitly_wait(30)
+print(driver.title)
 
 # Store the ID of the original window
 original_window = driver.current_window_handle
@@ -81,10 +83,6 @@ Select(div_parcours_select[1]).select_by_visible_text("Épreuve de sélection 1"
 
 wait.until(EC.presence_of_element_located([By.CSS_SELECTOR, '[uib-tooltip="Épreuve de sélection 1"]']))
 to_screen = driver.find_element(By.CSS_SELECTOR, """[ng-if="formValues.progressionType == 'collective'"]""").find_element(By.CLASS_NAME, "table-wrapper")
-to_screen.screenshot("test.png")
-
-try:
-    time.sleep(20)
-except:
-    pass
+to_screen.screenshot("screen.png")
+print("Fini !")
 driver.quit()
